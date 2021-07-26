@@ -13,9 +13,12 @@ void solve(void){
 
 	cin>>n;  
 
-	int element; 
+	int el; 
 
-	cin>>element;
+
+
+
+	cin>>el;
 
 
 	vector<int>nums(n); 
