@@ -70,11 +70,11 @@ int lower_bound(vector<int>&arr,int el){
 
 void solve(void){
 	
-	int n; 
+    int n; 
 
-	cin>>n; 
+    cin>>n; 
 
-	int element; 
+    int element; 
 
     cin>>element; 
 
@@ -112,7 +112,7 @@ int main(){
 
 
 	freopen("input.txt","r",stdin);  
-          freopen("output.txt","w",stdout);  
+        freopen("output.txt","w",stdout);  
 
 	
 	int test_cases; 
