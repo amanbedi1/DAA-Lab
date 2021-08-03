@@ -19,44 +19,44 @@ using namespace std;
 
 void solve(){  
 
-	int n; 
+    int n; 
 
-	cin>>n; 
-
-
-	vector<int>v(n); 
+    cin>>n; 
 
 
-	for(int i=0;i<n;++i){
-     	cin>>v[i];
-	}   
+    vector<int>v(n); 
+
+
+    for(int i=0;i<n;++i){
+        cin>>v[i];
+    }   
 
 
 
-	for(int i=n-1;i>=2;--i){
+    for(int i=n-1;i>=2;--i){
 
-		int left=0,right=i-1; 
+        int left=0,right=i-1; 
 
 
-		while(left<right){
+        while(left<right){
 
-			if(v[left]+v[right]==v[i]){
+            if(v[left]+v[right]==v[i]){
 
-				cout<<left+1<<' '<<right+1<<' '<<i+1<<'\n'; 
+                cout<<left+1<<' '<<right+1<<' '<<i+1<<'\n'; 
 
-				return;
-			} 
+                return;
+            } 
 
-			else if(v[left]+v[right]>v[i]){
-				--right;
-			} 
-			else{
-				++left;
-			}
-		}
-	} 
+            else if(v[left]+v[right]>v[i]){
+                --right;
+            } 
+            else{
+                ++left;
+            }
+        }
+    } 
 
-	cout<<"Sequence Not Found\n";
+    cout<<"Sequence Not Found\n";
 
 
 }
@@ -65,16 +65,16 @@ int main(){
 
 
 
-	freopen("input.txt","r",stdin);  
+    freopen("input.txt","r",stdin);  
     freopen("output.txt","w",stdout);  
 
 
-	int test_cases; 
+    int test_cases; 
 
-	cin>>test_cases; 
+    cin>>test_cases; 
 
-	while(test_cases--){  
+    while(test_cases--){  
 
-		solve();
- 	}
+        solve();
+    }
 }
