@@ -1,6 +1,9 @@
 // author : Amanpreet Singh Bedi 
-//Problem: Given Sorted array find given element if element is found also find its number of occurence. 
-//Time Complexity :O(log(n))
+
+//Problem: Given Sorted array find given element if element is found also find its number of occurence.  
+
+//Time Complexity :O(log(n)) 
+// Space Complexity : O(1)
 
 
 
@@ -12,64 +15,64 @@ using namespace std;
 
 
 int upper_bound(vector<int>&arr,int el){ 
-	
-	int n=arr.size(); 
+    
+    int n=arr.size(); 
 
-	int l=0,r=n-1; 
-
-
-	int index=n; 
+    int l=0,r=n-1; 
 
 
-	while(l<=r){  
-
-		int mid=(l+r)/2; 
-
-		if(arr[mid]>el){
-
-			index=mid; 
-			r=mid-1; 
-		} 
-		else{
-			l=mid+1;
-		}
-	} 
+    int index=n; 
 
 
-	return index;
+    while(l<=r){  
+
+        int mid=(l+r)/2; 
+
+        if(arr[mid]>el){
+
+            index=mid; 
+            r=mid-1; 
+        } 
+        else{
+            l=mid+1;
+        }
+    } 
+
+
+    return index;
 } 
 
 
 int lower_bound(vector<int>&arr,int el){ 
-	
-	int n=arr.size(); 
+    
+    int n=arr.size(); 
 
-	int l=0,r=n-1; 
-
-
-	int index=n; 
+    int l=0,r=n-1; 
 
 
-	while(l<=r){  
+    int index=n; 
 
-		int mid=(l+r)/2; 
 
-		if(arr[mid]>=el){
+    while(l<=r){  
 
-			index=mid; 
-			r=mid-1; 
-		} 
-		else{
-			l=mid+1;
-		}
-	} 
+        int mid=(l+r)/2; 
 
-	return index;
+        if(arr[mid]>=el){
+
+            index=mid; 
+            r=mid-1; 
+        } 
+        else{
+            l=mid+1;
+        }
+    } 
+
+    return index;
 }
 
 
 void solve(void){
-	
+    
     int n; 
 
     cin>>n; 
@@ -83,7 +86,7 @@ void solve(void){
 
 
     for(int i=0;i<n;++i){
-    	cin>>nums[i];
+        cin>>nums[i];
     }   
 
 
@@ -94,8 +97,8 @@ void solve(void){
 
 
     if(lower_bound_index==n || nums[lower_bound_index]!=element){  
-    	cout<<"Not Found\n";  
-    	return; 
+        cout<<"Not Found\n";  
+        return; 
     } 
 
 
@@ -111,17 +114,17 @@ int main(){
 
 
 
-	freopen("input.txt","r",stdin);  
+    freopen("input.txt","r",stdin);  
         freopen("output.txt","w",stdout);  
 
-	
-	int test_cases; 
+    
+    int test_cases; 
 
-	cin>>test_cases; 
+    cin>>test_cases; 
 
 
-	while(test_cases--){ 
+    while(test_cases--){ 
 
-		solve();
-	}
+        solve();
+    }
 }
