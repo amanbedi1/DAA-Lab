@@ -9,33 +9,33 @@ using namespace std;
 
 void mergesort(vector<int>&arr,int l,int r){
 
-	
+    
 }
 
 
 void solve(void){
 
-	int n; 
+    int n; 
 
-	cin>>n; 
+    cin>>n; 
 
-	vector<int>arr(n); 
+    vector<int>arr(n); 
 
-	for(int i=0;i<n;++i){
-		cin>>arr[i];
-	}
+    for(int i=0;i<n;++i){
+        cin>>arr[i];
+    }
 
-	mergesort(arr,0,n-1);
+    mergesort(arr,0,n-1);
 }
 
 
 int main(){
 
-	int test_cases; 
+    int test_cases; 
 
-	cin>>test_cases; 
+    cin>>test_cases; 
 
-	while(test_cases--){
-		solve();
-	}
+    while(test_cases--){
+        solve();
+    }
 }
