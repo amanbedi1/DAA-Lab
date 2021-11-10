@@ -15,48 +15,48 @@ using namespace std;
 
 void solve(void){  
 
-	int n; 
+    int n; 
 
-	cin>>n;  
-
-
-	vector<int>arr(n);
+    cin>>n;  
 
 
-	for(int i=0;i<n;++i){
-		cin>>arr[i];
-	}  
-
-	int k; 
-
-	cin>>k; 
+    vector<int>arr(n);
 
 
-	cout<<n<<' '<<k<<'\n'; 
+    for(int i=0;i<n;++i){
+        cin>>arr[i];
+    }  
+
+    int k; 
+
+    cin>>k; 
+
+
+    cout<<n<<' '<<k<<'\n'; 
 
 
 
-	for(int i=0;i<n;++i) 
-		cout<<arr[i]<<' '; 
+    for(int i=0;i<n;++i) 
+        cout<<arr[i]<<' '; 
     
     cout<<'\n';
 
 
-	long long count=0;  
+    long long count=0;  
 
 
-	for(int i=0;i<n;++i){
+    for(int i=0;i<n;++i){
 
-		for(int j=0;j<n;++j){
+        for(int j=0;j<n;++j){
 
-			if((arr[i]-arr[j])==k){ 
-				cout<<i<<' '<<j<<'\n';
-				++count;
-			}
-		}
-	} 
+            if((arr[i]-arr[j])==k){ 
+                cout<<i<<' '<<j<<'\n';
+                ++count;
+            }
+        }
+    } 
 
-	cout<<count<<'\n';
+    cout<<count<<'\n';
 
 
 
@@ -66,15 +66,15 @@ int main(){
 
 
 
-	freopen("input.txt","r",stdin);  
+    freopen("input.txt","r",stdin);  
     freopen("output.txt","w",stdout); 
 
-	int test_cases; 
+    int test_cases; 
 
-	cin>>test_cases; 
+    cin>>test_cases; 
 
 
-	while(test_cases--){
-		solve();
-	}
+    while(test_cases--){
+        solve();
+    }
 }
