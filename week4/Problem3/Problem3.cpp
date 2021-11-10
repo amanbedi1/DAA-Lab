@@ -1,6 +1,6 @@
 // author : Amanpreet Singh Bedi; 
 
-// Sort array using merge sort and find comparison and inversion 
+// Find kth element in unsorted array 
 
 #include<bits/stdc++.h>
 
