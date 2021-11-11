@@ -6,49 +6,49 @@ using namespace std;
 
 int main(){
 
-	freopen("input.txt","r",stdin); 
-	freopen("output.txt","w",stdout);
+    freopen("input.txt","r",stdin); 
+    freopen("output.txt","w",stdout);
 
-	int n; 
-	cin>>n; 
+    int n; 
+    cin>>n; 
 
-	priority_queue<int>pq; 
-
-
-	for(int i=0;i<n;++i){
-
-		int el; 
-
-		cin>>el; 
-
-		pq.push(-el); 
-	}  
-
-	int ans=0; 
+    priority_queue<int>pq; 
 
 
-	while(!pq.empty()){
+    for(int i=0;i<n;++i){
 
-		int x = pq.top(); 
+        int el; 
 
-		pq.pop(); 
+        cin>>el; 
 
-		if(pq.empty()){
-			break;
-		}
+        pq.push(-el); 
+    }  
 
-		int y= pq.top(); 
+    int ans=0; 
 
-		x=-x; 
-		y=-y;
 
-		pq.pop(); 
+    while(!pq.empty()){
 
-		pq.push(-(x+y)); 
+        int x = pq.top(); 
 
-	    ans+=(x+y); 
-	} 
+        pq.pop(); 
 
-	cout<<ans<<'\n';
+        if(pq.empty()){
+            break;
+        }
+
+        int y= pq.top(); 
+
+        x=-x; 
+        y=-y;
+
+        pq.pop(); 
+
+        pq.push(-(x+y)); 
+
+        ans+=(x+y); 
+    } 
+
+    cout<<ans<<'\n';
 
 }
