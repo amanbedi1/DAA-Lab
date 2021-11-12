@@ -1,68 +1,53 @@
 // author - Amanpreet Singh Bedi 
 
+#include<bits/stdc++.h>
 
-#include<bits/stdc++.h> 
+using namespace std;
 
-using namespace std; 
+void solve(void) {
 
+  int n;
 
+  cin >> n;
 
-void solve(void){  
+  int element;
 
-    int n; 
+  cin >> element;
 
-    cin>>n;  
+  vector < int > nums(n);
 
-    int element; 
+  for (int i = 0; i < n; ++i) {
+    cin >> nums[i];
+  }
 
-    cin>>element;
+  int element_pos = -1;
 
+  for (int i = 0; i < n; ++i) {
 
-    vector<int>nums(n); 
-
-
-    for(int i=0;i<n;++i){ 
-        cin>>nums[i]; 
-    }   
-
-
-
-    int element_pos=-1;
-
-
-
-    for(int i=0;i<n;++i){  
-
-        if(nums[i]==element){  
-            element_pos=i; 
-            break;
-        } 
-    } 
-
-
-    if(element_pos==-1){ 
-        cout<<"Not found\n";  
-    } 
-    else{
-        cout<<"Found total comparison "<<element_pos+1<<'\n';
+    if (nums[i] == element) {
+      element_pos = i;
+      break;
     }
+  }
 
+  if (element_pos == -1) {
+    cout << "Not found\n";
+  } else {
+    cout << "Found total comparison " << element_pos + 1 << '\n';
+  }
 
 }
 
+int main() {
 
-int main(){   
+  freopen("input.txt", "r", stdin);
+  freopen("output.txt", "w", stdout);
 
-    freopen("input.txt","r",stdin);  
-    freopen("output.txt","w",stdout);  
+  int test_cases;
+  cin >> test_cases;
 
+  while (test_cases--) {
 
-    int test_cases; 
-    cin>>test_cases; 
-
-
-    while(test_cases--){  
-
-        solve();
-    }
+    solve();
+  }
 }

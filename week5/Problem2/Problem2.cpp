@@ -1,76 +1,69 @@
 // author Amanpreet Singh Bedi
- 
-// Find any pair that sums upto given number
 
+// Find any pair that sums upto given number
 
 #include<bits/stdc++.h>
 
 using namespace std;
 
-void solve(void){
+void solve(void) {
 
-    int n; 
+  int n;
 
-    cin>>n; 
+  cin >> n;
 
-    int arr[n]; 
+  int arr[n];
 
+  for (int i = 0; i < n; ++i) {
+    cin >> arr[i];
+  }
 
-    for(int i=0;i<n;++i){
-        cin>>arr[i];
-    } 
+  int sum;
 
-    int sum; 
+  cin >> sum;
 
-    cin>>sum;
+  sort(arr, arr + n);
 
+  int i = 0, j = n - 1;
 
-    sort(arr,arr+n); 
+  bool found_pair = false;
 
+  while (i < j) {
 
-    int i=0,j=n-1;
+    if (arr[i] + arr[j] == sum) {
 
-    bool found_pair=false; 
+      cout << arr[i] << ' ' << arr[j] << ", ";
 
+      found_pair = true;
 
-    while(i<j){
+      ++i;
 
-        if(arr[i]+arr[j]==sum){
-
-            cout<<arr[i]<<' '<<arr[j]<<", "; 
-
-            found_pair=true;
-
-            ++i; 
-
-            --j;
-        } 
-        else if(arr[i]+arr[j]<sum){
-            ++i;
-        } 
-        else{
-            --j;
-        }
+      --j;
+    } else if (arr[i] + arr[j] < sum) {
+      ++i;
+    } else {
+      --j;
     }
+  }
 
-    if(!found_pair){
-        cout<<"No pair Found";
-    }
+  if (!found_pair) {
+    cout << "No pair Found";
+  }
 
-    cout<<'\n';
+  cout << '\n';
 
 }
 
-int main(){
+int main() {
 
-    freopen("input.txt","r",stdin); 
-    freopen("output.txt","w",stdout);
+  freopen("input.txt", "r", stdin);
+  freopen("output.txt", "w", stdout);
 
-    int test_cases; 
+  int test_cases;
 
-    cin>>test_cases;
+  cin >> test_cases;
 
-    while(test_cases--){
-        solve();
-    }
+  while (test_cases--) {
+    solve();
+  }
 }

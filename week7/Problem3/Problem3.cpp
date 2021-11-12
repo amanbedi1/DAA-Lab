@@ -2,121 +2,109 @@
 
 // Problem : Implement Bellman Ford Algorithm and print shortest paths from source to every other node 
 
-
 #include<bits/stdc++.h>
 
 using namespace std;
 
-struct edge{
+struct edge {
 
-    int u,v,cost;
-}; 
+  int u, v, cost;
+};
 
-edge getEdge(int u,int v,int cost){
+edge getEdge(int u, int v, int cost) {
 
-    edge e; 
+  edge e;
 
-    e.u=u; 
-    e.v=v; 
-    e.cost=cost;
+  e.u = u;
+  e.v = v;
+  e.cost = cost;
 
-    return e;
+  return e;
 }
 
+vector < int > restorePath(int node, vector < int > & par) {
 
+  vector < int > path;
 
+  for (int i = node; i != -1; i = par[i]) {
 
-vector<int>restorePath(int node,vector<int>&par){
+    path.push_back(i);
+  }
 
-    vector<int>path; 
-
-    for(int i = node;i!=-1;i=par[i]){
-
-        path.push_back(i);
-    } 
-
-    return path;
+  return path;
 }
 
+void BellmanFord(int src, vector < edge > & edges, int n) {
 
+  vector < int > par(n, -1), dist(n, INT_MAX);
 
-void BellmanFord(int src,vector<edge>&edges,int n){
+  dist[src] = 0;
 
+  for (int i = 0; i < n - 1; ++i) {
 
-    vector<int>par(n,-1),dist(n,INT_MAX);
+    for (int j = 0; j < edges.size(); ++j) {
 
+      edge e = edges[j];
 
-    dist[src]=0;
+      if (dist[e.u] < INT_MAX) {
 
+        if (dist[e.v] > dist[e.u] + e.cost) {
 
-    for(int i=0;i<n-1;++i){
+          dist[e.v] = dist[e.u] + e.cost;
 
-        for(int j=0;j<edges.size();++j){
-
-            edge e = edges[j];
-
-            if(dist[e.u]<INT_MAX){
-
-                if(dist[e.v]>dist[e.u]+e.cost){
-
-                    dist[e.v]=dist[e.u]+e.cost; 
-
-                    par[e.v] = e.u;
-                }
-            }
+          par[e.v] = e.u;
         }
+      }
+    }
+  }
+
+  for (int i = 0; i < n; ++i) {
+
+    vector < int > path = restorePath(i, par);
+
+    for (auto it: path) {
+      cout << it + 1 << ' ';
     }
 
-    for(int i=0;i<n;++i){
-
-        vector<int>path = restorePath(i,par); 
-
-        for(auto it:path){
-            cout<<it+1<<' ';
-        } 
-
-        cout<<": "<<dist[i]<<'\n';
-    }
+    cout << ": " << dist[i] << '\n';
+  }
 }
 
+void solve() {
 
+  int n;
 
-void solve(){
+  cin >> n;
 
-    int n; 
+  vector < edge > edges;
 
-    cin>>n; 
+  for (int i = 0; i < n; ++i) {
 
-    vector<edge>edges; 
+    for (int j = 0; j < n; ++j) {
 
-    for(int i=0;i<n;++i){
+      int el;
 
-        for(int j=0;j<n;++j){
+      cin >> el;
 
-            int el; 
+      if (el) {
+        edges.push_back(getEdge(i, j, el));
+      }
+    }
+  }
 
-            cin>>el;
+  int src;
 
-            if(el){
-                edges.push_back(getEdge(i,j,el));
-            }
-        }
-    } 
-    
-    int src; 
+  cin >> src;
 
-    cin>>src;
+  BellmanFord(src - 1, edges, n);
+}
 
-    BellmanFord(src-1,edges,n);
-} 
+int main() {
 
-int main(){
+  freopen("input.txt", "r", stdin);
+  freopen("output.txt", "w", stdout);
 
+  solve();
 
-    freopen("input.txt","r",stdin); 
-    freopen("output.txt","w",stdout);
-
-    solve(); 
-
-    return 0;
+  return 0;
 }

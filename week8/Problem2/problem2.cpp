@@ -4,122 +4,114 @@
 
 #include<bits/stdc++.h>
 
-using namespace std; 
+using namespace std;
 
-struct edge{
+struct edge {
 
-    int u,v,cost;
-};  
+  int u, v, cost;
+};
 
-edge getEdge(int u,int v,int cost){
+edge getEdge(int u, int v, int cost) {
 
-    edge e; 
+  edge e;
 
-    e.u=u; 
-    e.v=v; 
-    e.cost=cost; 
+  e.u = u;
+  e.v = v;
+  e.cost = cost;
 
-    return e; 
+  return e;
 }
 
-bool comp(edge &a,edge &b){
+bool comp(edge & a, edge & b) {
 
-    return a.cost<b.cost;
+  return a.cost < b.cost;
 }
-
-
 
 // DSU 
-int find(int a,vector<int>&par){
+int find(int a, vector < int > & par) {
 
-    if(par[a]==-1){
-        return a;
-    } 
+  if (par[a] == -1) {
+    return a;
+  }
 
-    return par[a]=find(par[a],par); 
-} 
+  return par[a] = find(par[a], par);
+}
 
+void merge(int a, int b, vector < int > & par, vector < int > & sz) {
 
-void merge(int a,int b,vector<int>&par,vector<int>&sz){
+  a = find(a, par);
 
-    a=find(a,par); 
+  b = find(b, par);
 
-    b=find(b,par); 
+  if (a != b) {
 
-    if(a!=b){
+    if (sz[a] < sz[b]) {
 
-        if(sz[a]<sz[b]){
-
-            swap(a,b); 
-        }
-
-        par[b]=a; 
-
-        sz[a]+=sz[b];
+      swap(a, b);
     }
+
+    par[b] = a;
+
+    sz[a] += sz[b];
+  }
 }
 
+void solve() {
 
-void solve(){
+  int n;
 
-    int n; 
+  cin >> n;
 
-    cin>>n; 
+  vector < vector < int >> graph(n, vector < int > (n, 0));
 
-    vector<vector<int>>graph(n,vector<int>(n,0)); 
+  for (int i = 0; i < n; ++i) {
 
-    for(int i=0;i<n;++i){
+    for (int j = 0; j < n; ++j) {
 
-        for(int j=0;j<n;++j){
+      cin >> graph[i][j];
+    }
+  }
 
-            cin>>graph[i][j];
-        }
-    }  
+  vector < int > par(n, -1), sz(n, 1);
 
+  vector < edge > edges;
 
-    vector<int>par(n,-1),sz(n,1);  
+  for (int i = 0; i < n; ++i) {
 
-    vector<edge>edges; 
+    for (int j = i + 1; j < n; ++j) {
 
+      if (graph[i][j] != 0) {
 
-    for(int i=0;i<n;++i){
+        edges.push_back(getEdge(i, j, graph[i][j]));
+      }
+    }
+  }
 
-        for(int j=i+1;j<n;++j){
+  sort(edges.begin(), edges.end(), comp);
 
-            if(graph[i][j]!=0){
+  int minimum_weight = 0;
 
-                edges.push_back(getEdge(i,j,graph[i][j]));
-            }
-        }
-    } 
+  for (int i = 0; i < (int) edges.size(); ++i) {
 
-    sort(edges.begin(),edges.end(),comp); 
+    edge e = edges[i];
 
-    int minimum_weight = 0 ;
+    if (find(e.u, par) != find(e.v, par)) {
 
-    for(int i=0;i<(int)edges.size();++i){
+      minimum_weight += e.cost;
 
-        edge e = edges[i]; 
+      merge(e.u, e.v, par, sz);
+    }
+  }
 
-        if(find(e.u,par)!=find(e.v,par)){
-            
-            minimum_weight+=e.cost; 
-
-            merge(e.u,e.v,par,sz);
-        }
-    } 
-
-    cout<<"Minimum Spanning Weight: "<<minimum_weight<<'\n';
+  cout << "Minimum Spanning Weight: " << minimum_weight << '\n';
 }
 
-int main(){
+int main() {
 
+  freopen("input.txt", "r", stdin);
+  freopen("output.txt", "w", stdout);
 
+  solve();
 
-    freopen("input.txt","r",stdin); 
-    freopen("output.txt","w",stdout);
-
-    solve(); 
-
-    return 0;
+  return 0;
 }

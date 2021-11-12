@@ -6,71 +6,70 @@
 // activity is greater than or equal to the finishing time of the other activity. Assume that a person
 // can only work on a single activity at a time 
 
-
 #include<bits/stdc++.h>
 
-using namespace std; 
+using namespace std;
 
-bool comp(pair<pair<int,int>,int>&a,pair<pair<int,int>,int>&b){
+bool comp(pair < pair < int, int > , int > & a, pair < pair < int, int > , int > & b) {
 
-    return a.first.second<b.first.second;
+  return a.first.second < b.first.second;
 }
 
-void solve(){
+void solve() {
 
-    int n; 
+  int n;
 
-    cin>>n; 
+  cin >> n;
 
-    vector<pair<pair<int,int>,int>>v(n); 
+  vector < pair < pair < int, int > , int >> v(n);
 
-    for(int i=0;i<n;++i){
+  for (int i = 0; i < n; ++i) {
 
-        cin>>v[i].first.first;
+    cin >> v[i].first.first;
 
-        v[i].second=i+1;
-    } 
+    v[i].second = i + 1;
+  }
 
-    for(int i=0;i<n;++i){
+  for (int i = 0; i < n; ++i) {
 
-        cin>>v[i].first.second;
+    cin >> v[i].first.second;
 
-        v[i].second=i+1;
-    } 
+    v[i].second = i + 1;
+  }
 
-    sort(v.begin(),v.end(),comp); 
-    
-    vector<int>ans; 
-    
-    int endtime=0; 
+  sort(v.begin(), v.end(), comp);
 
-    for(int i=0;i<n;++i){
+  vector < int > ans;
 
-        if(endtime < v[i].first.first){
+  int endtime = 0;
 
-            ans.push_back(v[i].second); 
+  for (int i = 0; i < n; ++i) {
 
-            endtime = v[i].first.second;
-        }
-    } 
+    if (endtime < v[i].first.first) {
 
-    cout<<ans.size()<<'\n'; 
+      ans.push_back(v[i].second);
 
-    for(auto it:ans){
-        cout<<it<<' ';
-    } 
+      endtime = v[i].first.second;
+    }
+  }
 
-    cout<<'\n';
+  cout << ans.size() << '\n';
+
+  for (auto it: ans) {
+    cout << it << ' ';
+  }
+
+  cout << '\n';
 
 }
 
-int main(){
+int main() {
 
-    freopen("input.txt","r",stdin); 
-    freopen("output.txt","w",stdout);
+  freopen("input.txt", "r", stdin);
+  freopen("output.txt", "w", stdout);
 
-    solve(); 
+  solve();
 
-    return 0;
+  return 0;
 
 }

@@ -4,103 +4,101 @@
 
 #include<bits/stdc++.h>
 
-using namespace std; 
+using namespace std;
 
 #include <bits/stdc++.h>
 
 using namespace std;
 
-int comparison=0,inversions=0;
+int comparison = 0, inversions = 0;
 
+void printArray(int * arr, int n) {
 
-void printArray(int* arr, int n){
+  for (int i = 0; i < n; i++)
 
-    for(int i = 0; i < n; i++)
-
-        cout<<arr[i]<<" ";
+    cout << arr[i] << " ";
 }
 
+void Merge(int * arr, int l, int mid, int r) {
 
+  int n1 = mid - l + 1, n2 = r - mid;
 
-void Merge(int* arr, int l, int mid, int r){
+  int Leftarr[n1], Rightarr[n2], i, j, k;
 
-    int n1=mid-l+1,n2=r-mid;
+  for (i = 0; i < n1; i++) Leftarr[i] = arr[l + i];
 
-    int Leftarr[n1],Rightarr[n2],i,j,k;
+  for (j = 0; j < n2; j++) Rightarr[j] = arr[mid + 1 + j];
 
-    for(i=0; i<n1; i++) Leftarr[i]=arr[l+i];
+  i = 0;
+  j = 0;
+  k = l;
 
-    for(j=0; j<n2; j++) Rightarr[j] = arr[mid+1+j];
+  while (i < n1 && j < n2) {
 
-    i=0;j=0;k=l;
+    if (Leftarr[i] <= Rightarr[j]) {
 
-    while(i<n1 && j<n2){
-
-        if(Leftarr[i]<=Rightarr[j]){
-
-            comparison++;
-            arr[k] = Leftarr[i];
-            i++;
-        }
-        else{
-            comparison++;
-            arr[k] = Rightarr[j];
-            j++;
-            inversions += (mid+1) - (l+i);
-        }
-        k++;
+      comparison++;
+      arr[k] = Leftarr[i];
+      i++;
+    } else {
+      comparison++;
+      arr[k] = Rightarr[j];
+      j++;
+      inversions += (mid + 1) - (l + i);
     }
+    k++;
+  }
 
-    while(i<n1){
+  while (i < n1) {
 
-        arr[k++]=Leftarr[i++];
-    }
+    arr[k++] = Leftarr[i++];
+  }
 
-    while(j<n2){ 
+  while (j < n2) {
 
-        arr[k++]=Rightarr[j++];
-    }
+    arr[k++] = Rightarr[j++];
+  }
 }
 
-void MergeSort(int* arr, int l, int h){
+void MergeSort(int * arr, int l, int h) {
 
-    if(l<h){
+  if (l < h) {
 
-        int mid = l+(h-l)/2;
-        MergeSort(arr,l,mid);
-        MergeSort(arr,mid+1,h);
-        Merge(arr,l,mid,h);
-    }
+    int mid = l + (h - l) / 2;
+    MergeSort(arr, l, mid);
+    MergeSort(arr, mid + 1, h);
+    Merge(arr, l, mid, h);
+  }
 }
 
-int main(){
+int main() {
 
-    freopen("input.txt","r",stdin);
-    freopen("output.txt","w",stdout); 
-    
-    int test_cases; 
+  freopen("input.txt", "r", stdin);
+  freopen("output.txt", "w", stdout);
 
-    cin>>test_cases; 
+  int test_cases;
 
-    while(test_cases--){
+  cin >> test_cases;
 
-        int n;
-        cin>>n;
+  while (test_cases--) {
 
-        int arr[n];
+    int n;
+    cin >> n;
 
-        for (int i = 0; i < n; i++)
-            cin>>arr[i];
+    int arr[n];
 
-        comparison=0,inversions=0;
+    for (int i = 0; i < n; i++)
+      cin >> arr[i];
 
-        MergeSort(arr,0,n-1);
-        printArray(arr,n);
+    comparison = 0, inversions = 0;
 
-        cout<<"\n"<<"comparisons: "<<comparison<<"\n";
+    MergeSort(arr, 0, n - 1);
+    printArray(arr, n);
 
-        cout<<"inversions: "<<inversions<<endl;
-    }
+    cout << "\n" << "comparisons: " << comparison << "\n";
 
-    return 0;
+    cout << "inversions: " << inversions << endl;
+  }
+
+  return 0;
 }

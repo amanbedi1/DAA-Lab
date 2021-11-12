@@ -5,76 +5,60 @@
 
 // Time Complexity : O(N*N) 
 
+#include <bits/stdc++.h>
 
+using namespace std;
 
+void solve(void) {
 
-#include <bits/stdc++.h> 
+  int n;
 
-using namespace std;  
+  cin >> n;
 
+  vector < int > arr(n);
 
-void solve(void){  
+  for (int i = 0; i < n; ++i) {
+    cin >> arr[i];
+  }
 
-    int n; 
+  int k;
 
-    cin>>n;  
+  cin >> k;
 
+  cout << n << ' ' << k << '\n';
 
-    vector<int>arr(n);
+  for (int i = 0; i < n; ++i)
+    cout << arr[i] << ' ';
 
+  cout << '\n';
 
-    for(int i=0;i<n;++i){
-        cin>>arr[i];
-    }  
+  long long count = 0;
 
-    int k; 
+  for (int i = 0; i < n; ++i) {
 
-    cin>>k; 
+    for (int j = 0; j < n; ++j) {
 
+      if ((arr[i] - arr[j]) == k) {
+        cout << i << ' ' << j << '\n';
+        ++count;
+      }
+    }
+  }
 
-    cout<<n<<' '<<k<<'\n'; 
-
-
-
-    for(int i=0;i<n;++i) 
-        cout<<arr[i]<<' '; 
-    
-    cout<<'\n';
-
-
-    long long count=0;  
-
-
-    for(int i=0;i<n;++i){
-
-        for(int j=0;j<n;++j){
-
-            if((arr[i]-arr[j])==k){ 
-                cout<<i<<' '<<j<<'\n';
-                ++count;
-            }
-        }
-    } 
-
-    cout<<count<<'\n';
-
-
+  cout << count << '\n';
 
 }
 
-int main(){ 
+int main() {
 
+  freopen("input.txt", "r", stdin);
+  freopen("output.txt", "w", stdout);
 
+  int test_cases;
 
-    freopen("input.txt","r",stdin);  
-    freopen("output.txt","w",stdout); 
+  cin >> test_cases;
 
-    int test_cases; 
-
-    cin>>test_cases; 
-
-
-    while(test_cases--){
-        solve();
-    }
+  while (test_cases--) {
+    solve();
+  }
 }

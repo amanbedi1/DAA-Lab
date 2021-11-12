@@ -2,53 +2,51 @@
 
 #include<bits/stdc++.h>
 
-using namespace std; 
+using namespace std;
 
-int main(){
+int main() {
 
-    freopen("input.txt","r",stdin); 
-    freopen("output.txt","w",stdout);
+  freopen("input.txt", "r", stdin);
+  freopen("output.txt", "w", stdout);
 
-    int n; 
-    cin>>n; 
+  int n;
+  cin >> n;
 
-    priority_queue<int>pq; 
+  priority_queue < int > pq;
 
+  for (int i = 0; i < n; ++i) {
 
-    for(int i=0;i<n;++i){
+    int el;
 
-        int el; 
+    cin >> el;
 
-        cin>>el; 
+    pq.push(-el);
+  }
 
-        pq.push(-el); 
-    }  
+  int ans = 0;
 
-    int ans=0; 
+  while (!pq.empty()) {
 
+    int x = pq.top();
 
-    while(!pq.empty()){
+    pq.pop();
 
-        int x = pq.top(); 
+    if (pq.empty()) {
+      break;
+    }
 
-        pq.pop(); 
+    int y = pq.top();
 
-        if(pq.empty()){
-            break;
-        }
+    x = -x;
+    y = -y;
 
-        int y= pq.top(); 
+    pq.pop();
 
-        x=-x; 
-        y=-y;
+    pq.push(-(x + y));
 
-        pq.pop(); 
+    ans += (x + y);
+  }
 
-        pq.push(-(x+y)); 
-
-        ans+=(x+y); 
-    } 
-
-    cout<<ans<<'\n';
+  cout << ans << '\n';
 
 }

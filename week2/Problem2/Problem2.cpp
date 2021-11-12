@@ -1,6 +1,5 @@
 // author : Amanpreet Singh Bedi 
 
-
 // Problem Statement: Given a sorted array of positive integers, design an algorithm and implement it using a program
 // to find three indices i, j, k such that arr[i] + arr[j] = arr[k].  
 
@@ -10,71 +9,56 @@
 
 // Space Complexity : O(1) 
 
+#include<bits/stdc++.h>
 
+using namespace std;
 
-#include<bits/stdc++.h> 
+void solve() {
 
-using namespace std;  
+  int n;
 
+  cin >> n;
 
-void solve(){  
+  vector < int > v(n);
 
-    int n; 
+  for (int i = 0; i < n; ++i) {
+    cin >> v[i];
+  }
 
-    cin>>n; 
+  for (int i = n - 1; i >= 2; --i) {
 
+    int left = 0, right = i - 1;
 
-    vector<int>v(n); 
+    while (left < right) {
 
+      if (v[left] + v[right] == v[i]) {
 
-    for(int i=0;i<n;++i){
-        cin>>v[i];
-    }   
+        cout << left + 1 << ' ' << right + 1 << ' ' << i + 1 << '\n';
 
+        return;
+      } else if (v[left] + v[right] > v[i]) {
+        --right;
+      } else {
+        ++left;
+      }
+    }
+  }
 
-
-    for(int i=n-1;i>=2;--i){
-
-        int left=0,right=i-1; 
-
-
-        while(left<right){
-
-            if(v[left]+v[right]==v[i]){
-
-                cout<<left+1<<' '<<right+1<<' '<<i+1<<'\n'; 
-
-                return;
-            } 
-
-            else if(v[left]+v[right]>v[i]){
-                --right;
-            } 
-            else{
-                ++left;
-            }
-        }
-    } 
-
-    cout<<"Sequence Not Found\n";
-
+  cout << "Sequence Not Found\n";
 
 }
 
-int main(){    
+int main() {
 
+  freopen("input.txt", "r", stdin);
+  freopen("output.txt", "w", stdout);
 
+  int test_cases;
 
-    freopen("input.txt","r",stdin);  
-    freopen("output.txt","w",stdout);  
+  cin >> test_cases;
 
+  while (test_cases--) {
 
-    int test_cases; 
-
-    cin>>test_cases; 
-
-    while(test_cases--){  
-
-        solve();
-    }
+    solve();
+  }
 }

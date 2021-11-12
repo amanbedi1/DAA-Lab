@@ -4,67 +4,61 @@
 
 #include<bits/stdc++.h>
 
-using namespace std; 
+using namespace std;
 
+void solve(void) {
 
-void solve(void){
+  int n;
 
-    int n; 
+  cin >> n;
 
-    cin>>n; 
+  vector < int > arr(n);
 
+  for (int i = 0; i < n; ++i) {
+    cin >> arr[i];
+  }
 
-    vector<int>arr(n); 
+  int comparison = 0, shifts = 0;
 
-    for(int i=0;i<n;++i){
-        cin>>arr[i];
+  for (int i = 0; i < n - 1; ++i) {
+
+    int index = i;
+
+    for (int j = i + 1; j < n; ++j) {
+
+      ++comparison;
+
+      if (arr[j] < arr[index]) {
+        index = j;
+      }
     }
 
-
-    int comparison=0,shifts=0;
-
-    for(int i=0;i<n-1;++i){
-
-        int index = i; 
-
-        for(int j=i+1;j<n;++j){
-
-            ++comparison;
-
-            if(arr[j]<arr[index]){
-                index=j;
-            }
-        } 
-
-        if(index!=i){
-            ++shifts; 
-            swap(arr[index],arr[i]);
-        }
+    if (index != i) {
+      ++shifts;
+      swap(arr[index], arr[i]);
     }
+  }
 
+  for (auto it: arr) {
+    cout << it << ' ';
+  }
 
-    for(auto it:arr){
-        cout<<it<<' ';
-    } 
+  cout << '\n';
 
-    cout<<'\n'; 
-
-
-    cout<<"Comparison "<<comparison<<"\n"<<"Shifts "<<shifts<<'\n';
+  cout << "Comparison " << comparison << "\n" << "Shifts " << shifts << '\n';
 }
 
+int main() {
 
-int main(){
+  freopen("input.txt", "r", stdin);
 
-    freopen("input.txt","r",stdin); 
+  freopen("output.txt", "w", stdout);
 
-    freopen("output.txt","w",stdout);
+  int test_cases;
 
-    int test_cases; 
+  cin >> test_cases;
 
-    cin>>test_cases; 
-
-    while(test_cases--){
-        solve();
-    }
+  while (test_cases--) {
+    solve();
+  }
 }

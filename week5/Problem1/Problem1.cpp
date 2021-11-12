@@ -6,51 +6,51 @@
 
 using namespace std;
 
-void solve(void){
+void solve(void) {
 
-    int n; 
+  int n;
 
-    cin>>n; 
+  cin >> n;
 
-    string s; 
+  string s;
 
-    cin>>s; 
+  cin >> s;
 
-    int arr[26]={0}; 
+  int arr[26] = {
+    0
+  };
 
-    for(int i=0;i<n;++i){
-        arr[s[i]-'a']++;
-    } 
+  for (int i = 0; i < n; ++i) {
+    arr[s[i] - 'a']++;
+  }
 
+  int mx = 0;
 
-    int mx=0; 
+  for (int i = 0; i < 26; ++i) {
 
-    for(int i=0;i<26;++i){
-
-        if(arr[i]>arr[mx]){
-            mx=i;
-        }
+    if (arr[i] > arr[mx]) {
+      mx = i;
     }
+  }
 
-    if(arr[mx]==1){
-        cout<<"NO duplicates found\n";
-    } 
-    else{
+  if (arr[mx] == 1) {
+    cout << "NO duplicates found\n";
+  } else {
 
-        cout<<(char)('a'+mx)<<' '<<arr[mx]<<'\n';
-    }
-} 
+    cout << (char)('a' + mx) << ' ' << arr[mx] << '\n';
+  }
+}
 
-int main(){
+int main() {
 
-    freopen("input.txt","r",stdin); 
-    freopen("output.txt","w",stdout);
+  freopen("input.txt", "r", stdin);
+  freopen("output.txt", "w", stdout);
 
-    int test_cases; 
+  int test_cases;
 
-    cin>>test_cases; 
+  cin >> test_cases;
 
-    while(test_cases--){
-        solve();
-    }
+  while (test_cases--) {
+    solve();
+  }
 }

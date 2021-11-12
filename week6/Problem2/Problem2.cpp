@@ -6,87 +6,75 @@
 
 using namespace std;
 
+bool bfs(vector < int > & color, vector < vector < int >> & adjacency_matrix) {
 
-bool bfs(vector<int>&color,vector<vector<int>>&adjacency_matrix){
-    
-    int n = adjacency_matrix.size(); 
+  int n = adjacency_matrix.size();
 
-    queue<int>q; 
+  queue < int > q;
 
-    q.push(0); 
-    
-    color[0]=0; 
+  q.push(0);
 
-    while(!q.empty()){
+  color[0] = 0;
 
-        int v = q.front(); 
+  while (!q.empty()) {
 
-        q.pop(); 
+    int v = q.front();
 
-        for(int i=0;i<n;++i){
+    q.pop();
 
-            if(adjacency_matrix[v][i]){  
+    for (int i = 0; i < n; ++i) {
 
-                if(color[i]==-1){ 
+      if (adjacency_matrix[v][i]) {
 
-                    color[i]=1-color[v];
-                    q.push(i);
-                } 
+        if (color[i] == -1) {
 
-                else if(color[i]==color[v]){
-                    return false;
-                }
-            }
+          color[i] = 1 - color[v];
+          q.push(i);
+        } else if (color[i] == color[v]) {
+          return false;
         }
-    } 
+      }
+    }
+  }
 
-
-    return true;
-
+  return true;
 
 }
 
+void solve() {
 
-void solve(){
+  int n;
 
-    int n; 
+  cin >> n;
 
-    cin>>n; 
+  vector < vector < int >> adjacency_matrix(n, vector < int > (n));
 
-    vector<vector<int>>adjacency_matrix(n,vector<int>(n)); 
-
-
-    for(int i=0;i<n;++i){
-        for(int j=0;j<n;++j){
-            cin>>adjacency_matrix[i][j];
-        }
-    } 
-
-
-    vector<int>color(n,-1);
-    
-
-
-    if(bfs(color,adjacency_matrix)){
-        cout<<"Bipartite\n";
-    } 
-    else{
-        cout<<"Non Bipartite\n";
+  for (int i = 0; i < n; ++i) {
+    for (int j = 0; j < n; ++j) {
+      cin >> adjacency_matrix[i][j];
     }
+  }
 
-    
+  vector < int > color(n, -1);
+
+  if (bfs(color, adjacency_matrix)) {
+    cout << "Bipartite\n";
+  } else {
+    cout << "Non Bipartite\n";
+  }
+
 }
 
-int  main(){
+int main() {
 
-    freopen("input.txt","r",stdin); 
-    freopen("output.txt","w",stdout);
+  freopen("input.txt", "r", stdin);
+  freopen("output.txt", "w", stdout);
 
-    int test_cases; 
+  int test_cases;
 
-    cin>>test_cases; 
+  cin >> test_cases;
 
-    while(test_cases--){
-        solve();
-    }
+  while (test_cases--) {
+    solve();
+  }
 }

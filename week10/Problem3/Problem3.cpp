@@ -4,39 +4,39 @@
 
 #include<bits/stdc++.h>
 
-using namespace std; 
+using namespace std;
 
-int main(){
+int main() {
 
-	freopen("input.txt","r",stdin); 
-	freopen("output.txt","w",stdout);
+  freopen("input.txt", "r", stdin);
+  freopen("output.txt", "w", stdout);
 
-	int n; 
+  int n;
 
-	cin>>n; 
+  cin >> n;
 
-	int arr[n]; 
+  int arr[n];
 
-	map<int,int>mp; 
+  map < int, int > mp;
 
-	for(int i=0;i<n;++i){
-		cin>>arr[i]; 
-		mp[arr[i]]++;
-	} 
+  for (int i = 0; i < n; ++i) {
+    cin >> arr[i];
+    mp[arr[i]]++;
+  }
 
-	string ans="NO";
+  string ans = "NO";
 
-	for(auto it:mp){
+  for (auto it: mp) {
 
-		if(it.second>n/2){
+    if (it.second > n / 2) {
 
-			ans="YES"; 
-			break;
-		}
- 	}
+      ans = "YES";
+      break;
+    }
+  }
 
- 	sort(arr,arr+n); 
+  sort(arr, arr + n);
 
- 	cout<<ans<<'\n'; 
- 	cout<<arr[(n-1)/2]<<'\n'; 
-} 
+  cout << ans << '\n';
+  cout << arr[(n - 1) / 2] << '\n';
+}

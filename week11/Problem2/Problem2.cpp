@@ -6,48 +6,46 @@
 
 #include<bits/stdc++.h>
 
-using namespace std; 
+using namespace std;
 
-int main(){
+int main() {
 
-    freopen("input.txt","r",stdin); 
-    freopen("output.txt","w",stdout);
+  freopen("input.txt", "r", stdin);
+  freopen("output.txt", "w", stdout);
 
-    int n; 
+  int n;
 
-    cin>>n;
+  cin >> n;
 
-    int arr[n]; 
+  int arr[n];
 
-    int sum=0; 
+  int sum = 0;
 
-    for(int i=0;i<n;++i){
+  for (int i = 0; i < n; ++i) {
 
-        cin>>arr[i]; 
+    cin >> arr[i];
 
-        sum+=arr[i];
-    } 
+    sum += arr[i];
+  }
 
-    vector<bool>dp(sum+1,false); 
+  vector < bool > dp(sum + 1, false);
 
-    dp[0]=true; 
+  dp[0] = true;
 
+  for (int i = 0; i < n; ++i) {
 
-    for(int i=0;i<n;++i){
+    for (int j = sum; j >= 0; --j) {
 
-        for(int j=sum;j>=0;--j){
+      if (j - arr[i] >= 0 && dp[j - arr[i]]) {
 
-            if(j-arr[i]>=0 && dp[j-arr[i]]){
-
-                dp[j]=true;
-            }
-        }
-    } 
-
-    if((sum&1) || !dp[sum/2]){
-        cout<<"NO\n"; 
+        dp[j] = true;
+      }
     }
-    else{
-        cout<<"YES\n";
-    }
+  }
+
+  if ((sum & 1) || !dp[sum / 2]) {
+    cout << "NO\n";
+  } else {
+    cout << "YES\n";
+  }
 }

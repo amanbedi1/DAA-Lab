@@ -2,81 +2,79 @@
 
 // Problem : Find Minimum Spanning Tree using Prims Algorithm 
 
-
 #include<bits/stdc++.h>
 
 using namespace std;
 
-int prim(vector<vector<int>>& v, int n) {
+int prim(vector < vector < int >> & v, int n) {
 
-    vector<bool>vis(n, false);
+  vector < bool > vis(n, false);
 
-    vector<int>wei(n, INT_MAX);
+  vector < int > wei(n, INT_MAX);
 
-    priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>>mh;
+  priority_queue < pair < int, int > , vector < pair < int, int >> , greater < pair < int, int >>> mh;
 
-    int s = 0;
+  int s = 0;
 
-    wei[s] = 0;
+  wei[s] = 0;
 
-    mh.push(make_pair(wei[s], s));
+  mh.push(make_pair(wei[s], s));
 
-    while (!mh.empty()) {
+  while (!mh.empty()) {
 
-        int i = mh.top().second;
+    int i = mh.top().second;
 
-        mh.pop();
+    mh.pop();
 
-        if (!vis[i]) {
+    if (!vis[i]) {
 
-            vis[i] = true;
+      vis[i] = true;
 
-            for (int j = 0;j < n;j++) {
+      for (int j = 0; j < n; j++) {
 
-                if (!vis[j] && v[i][j] != 0 && v[i][j] < wei[j]) {
+        if (!vis[j] && v[i][j] != 0 && v[i][j] < wei[j]) {
 
-                    wei[j] = v[i][j];
-                    mh.push(make_pair(wei[j], j));
-                }
-            }
+          wei[j] = v[i][j];
+          mh.push(make_pair(wei[j], j));
         }
+      }
     }
+  }
 
-    int sum = 0;
+  int sum = 0;
 
-    for (auto i : wei)
-        sum = sum + i;
+  for (auto i: wei)
+    sum = sum + i;
 
-    return sum;
+  return sum;
 }
 
 int main() {
 
+  freopen("input.txt", "r", stdin);
+  freopen("output.txt", "w", stdout);
 
-    freopen("input.txt", "r", stdin);
-    freopen("output.txt", "w", stdout);
+  int n, t;
 
-    int n, t;
+  cin >> n;
 
-    cin >> n;
+  vector < vector < int >> v;
 
-    vector<vector<int>>v;
+  vector < int > vec;
 
-    vector<int>vec;
+  for (int i = 0; i < n; i++) {
 
-    for (int i = 0;i < n;i++) {
+    vec.clear();
 
-        vec.clear();
+    for (int j = 0; j < n; j++) {
 
-        for (int j = 0;j < n;j++) {
+      cin >> t;
 
-            cin >> t;
-
-            vec.push_back(t);
-        }
-
-        v.push_back(vec);
+      vec.push_back(t);
     }
 
-    cout << "Minimum spanning weight : " << prim(v, n);
+    v.push_back(vec);
+  }
+
+  cout << "Minimum spanning weight : " << prim(v, n);
 }

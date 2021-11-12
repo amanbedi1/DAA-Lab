@@ -6,127 +6,113 @@
 
 using namespace std;
 
+bool dfs(int src, int destination, vector < bool > & visited, vector < vector < int >> & adjacency_matrix) {
 
-bool dfs(int src,int destination,vector<bool>&visited,vector<vector<int>>&adjacency_matrix){
-    
-    int n = adjacency_matrix.size(); 
+  int n = adjacency_matrix.size();
 
-    visited[src]=true; 
+  visited[src] = true;
 
-    if(src==destination){
-        return true;
-    } 
+  if (src == destination) {
+    return true;
+  }
 
-    bool isexist=false;
+  bool isexist = false;
 
-    for(int i=0;i<n;++i){
+  for (int i = 0; i < n; ++i) {
 
-        if(adjacency_matrix[src][i] && !visited[i]){
-     
-            isexist|=dfs(i,destination,visited,adjacency_matrix);
-        }
+    if (adjacency_matrix[src][i] && !visited[i]) {
+
+      isexist |= dfs(i, destination, visited, adjacency_matrix);
     }
+  }
 
-    return isexist;
+  return isexist;
 }
 
+bool bfs(int src, int destination, vector < bool > & visited, vector < vector < int >> & adjacency_matrix) {
 
-bool bfs(int src,int destination,vector<bool>&visited,vector<vector<int>>&adjacency_matrix){
-    
-    int n = adjacency_matrix.size(); 
+  int n = adjacency_matrix.size();
 
-    queue<int>q; 
+  queue < int > q;
 
-    q.push(src); 
-    
-    visited[src]=true; 
+  q.push(src);
 
-    while(!q.empty()){
+  visited[src] = true;
 
-        int v = q.front(); 
+  while (!q.empty()) {
 
-        q.pop(); 
+    int v = q.front();
 
+    q.pop();
 
-        for(int i=0;i<n;++i){
+    for (int i = 0; i < n; ++i) {
 
-            if(adjacency_matrix[v][i] && !visited[i]){
-     
-                visited[i]=true; 
+      if (adjacency_matrix[v][i] && !visited[i]) {
 
-                q.push(i);
-            }
-        }
-    } 
+        visited[i] = true;
 
+        q.push(i);
+      }
+    }
+  }
 
-    return visited[destination];
-
+  return visited[destination];
 
 }
 
+void solve() {
 
-void solve(){
+  int n;
 
-    int n; 
+  cin >> n;
 
-    cin>>n; 
+  vector < vector < int >> adjacency_matrix(n, vector < int > (n));
 
-    vector<vector<int>>adjacency_matrix(n,vector<int>(n)); 
-
-
-    for(int i=0;i<n;++i){
-        for(int j=0;j<n;++j){
-            cin>>adjacency_matrix[i][j];
-        }
-    } 
-
-    int source,destination; 
-
-    cin>>source>>destination;  
-
-
-    vector<bool>visited(n,false);
-
-    --source; 
-
-    --destination;
-
-    if(dfs(source,destination,visited,adjacency_matrix)){
-        cout<<"Path existed by dfs\n";
-    } 
-    else{
-        cout<<"Path not existed by dfs\n";
+  for (int i = 0; i < n; ++i) {
+    for (int j = 0; j < n; ++j) {
+      cin >> adjacency_matrix[i][j];
     }
+  }
 
+  int source, destination;
 
-    for(int i=0;i<n;++i){
+  cin >> source >> destination;
 
-        visited[i]=false;
-    }
-    
+  vector < bool > visited(n, false);
 
+  --source;
 
-    if(bfs(source,destination,visited,adjacency_matrix)){
-        cout<<"Path existed by bfs\n";
-    } 
-    else{
-        cout<<"Path not existed by bfs\n";
-    }
+  --destination;
 
-    
+  if (dfs(source, destination, visited, adjacency_matrix)) {
+    cout << "Path existed by dfs\n";
+  } else {
+    cout << "Path not existed by dfs\n";
+  }
+
+  for (int i = 0; i < n; ++i) {
+
+    visited[i] = false;
+  }
+
+  if (bfs(source, destination, visited, adjacency_matrix)) {
+    cout << "Path existed by bfs\n";
+  } else {
+    cout << "Path not existed by bfs\n";
+  }
+
 }
 
-int  main(){
+int main() {
 
-    freopen("input.txt","r",stdin); 
-    freopen("output.txt","w",stdout);
+  freopen("input.txt", "r", stdin);
+  freopen("output.txt", "w", stdout);
 
-    int test_cases; 
+  int test_cases;
 
-    cin>>test_cases; 
+  cin >> test_cases;
 
-    while(test_cases--){
-        solve();
-    }
+  while (test_cases--) {
+    solve();
+  }
 }
